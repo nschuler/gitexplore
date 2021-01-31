@@ -64,6 +64,26 @@ const Dashboard = () => {
             </Form>
 
             {inputError && <Error>{inputError}</Error>}
+
+            <Repositories>
+                {repositories.map(repository => (
+                <Link
+                    key={repository.full_name}
+                    to={`/repositories/${repository.full_name}`}
+                >
+                    <img
+                        src={repository.owner.avatar_url}
+                        alt={repository.owner.login}
+                    />
+                    <div>
+                        <strong>{repository.full_name}</strong>
+                        <p>{repository.description}</p>
+                    </div>
+
+                    <FiChevronRight size={20} color="#cbcbcd" />
+                </Link>
+                ))}
+            </Repositories>
         </>
     )
 }
@@ -115,7 +135,50 @@ const Form = styled.form`
 `;
 
 const Error = styled.span`
-  display: block;
-  margin-top: 8px;
-  color: #c53030;
+    display: block;
+    margin-top: 8px;
+    color: #c53030;
 `;
+
+const Repositories = styled.div`
+    max-width: 700px;
+    margin-top: 80px;
+    a {
+        display: block;
+        display: flex;
+        align-items: center;
+        width: 100%;
+        padding: 24px;
+        border-radius: 5px;
+        background: #fff;
+        text-decoration: none;
+        transition: transform 0.2s;
+        & + a {
+            margin-top: 16px;
+        }
+        &:hover {
+            transform: translateX(10px);
+        }
+    }
+    img {
+        width: 64px;
+        height: 64px;
+        border-radius: 50%;
+    }
+    div {
+        flex: 1;
+        margin: 0 16px;
+        strong {
+            color: #3d3d4d;
+            font-size: 20px;
+        }
+        p {
+            margin-top: 4px;
+            color: #a8a8b3;
+            font-size: 18px;
+        }
+        svg {
+            margin-left: auto;
+        }
+    }
+`
