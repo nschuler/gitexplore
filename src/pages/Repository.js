@@ -66,6 +66,24 @@ const Repository = () => {
                     </ul>
                 </RepositoryInfo>
             )}
+
+            <Issues>
+                {issues.map(issue => (
+                <a
+                    key={issue.id}
+                    href={issue.html_url}
+                    target="_blank"
+                    rel="noreferrer"
+                >
+                    <div>
+                        <strong>{issue.title}</strong>
+                        <p>{issue.user.login}</p>
+                    </div>
+
+                    <FiChevronRight size={20} color="#cbcbcd" />
+                </a>
+                ))}
+            </Issues>
         </>
     )
 }
@@ -134,6 +152,43 @@ const RepositoryInfo = styled.section`
                 margin-top: 4px;
                 color: #6c6c80;
             }
+        }
+    }
+`;
+
+const Issues = styled.div`
+    margin-top: 80px;
+    a {
+        display: block;
+        display: flex;
+        align-items: center;
+        width: 100%;
+        padding: 24px;
+        border-radius: 5px;
+        background: #fff;
+        text-decoration: none;
+        transition: transform 0.2s;
+        & + a {
+            margin-top: 16px;
+        }
+        &:hover {
+            transform: translateX(10px);
+        }
+    }
+    div {
+        flex: 1;
+        margin: 0 16px;
+        strong {
+            color: #3d3d4d;
+            font-size: 20px;
+        }
+        p {
+            margin-top: 4px;
+            color: #a8a8b3;
+            font-size: 18px;
+        }
+        svg {
+            margin-left: auto;
         }
     }
 `;
