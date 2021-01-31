@@ -46,6 +46,23 @@ const Repository = () => {
                                 <p>{repository.description}.</p>
                             </div>
                         </header>
+
+                        <ul>
+                            <li>
+                                <strong>{repository.stargazers_count}</strong>
+                                <span>Stars</span>
+                            </li>
+
+                            <li>
+                                <strong>{repository.forks_count}</strong>
+                                <span>Forks</span>
+                            </li>
+
+                            <li>
+                                <strong>{repository.open_issues_count}</strong>
+                                <span>Open Issues</span>
+                            </li>
+                        </ul>
                     </RepositoryInfo>
                 )}
             </Header>
@@ -75,7 +92,7 @@ const Header = styled.header`
     }
 `;
 
-const RepositoryInfo = styled.div`
+const RepositoryInfo = styled.section`
     margin-top: 80px;
     header {
         display: flex;
@@ -87,14 +104,36 @@ const RepositoryInfo = styled.div`
         }
         div {
             margin-left: 24px;
-        strong {
-            color: #3d3d4d;
-            font-size: 36px;
+            strong {
+                color: #3d3d4d;
+                font-size: 36px;
+            }
+            p {
+                margin-top: 4px;
+                color: #737388;
+                font-size: 18px;
+            }
         }
-        p {
-            margin-top: 4px;
-            color: #737388;
-            font-size: 18px;
+    }
+
+    ul {
+        display: flex;
+        margin-top: 40px;
+        list-style: none;
+        li {
+            & + li {
+                margin-left: 80px;
+            }
+            strong {
+                display: block;
+                color: #3d3d4d;
+                font-size: 36px;
+            }
+            span {
+                display: block;
+                margin-top: 4px;
+                color: #6c6c80;
+            }
         }
     }
 `;
