@@ -11,6 +11,18 @@ const Repository = () => {
     const [repository, setRepository] = useState(null);
     const [issues, setIssues] = useState([]);
 
+    const { params } = useRouteMatch();
+
+    useEffect(() => {
+        api.get(`repos/${params.repository}`).then(response => {
+            setRepository(response.data);
+        });
+    
+        api.get(`repos/${params.repository}/issues`).then(response => {
+            setIssues(response.data);
+        });
+    }, [params.repository]);
+
     return (
         <>
             <Header>
@@ -20,6 +32,22 @@ const Repository = () => {
                     <FiChevronLeft size={16} />
                     Back
                 </Link>
+
+                {repository && (
+                    <RepositoryInfo>
+                        <header>
+                            <img
+                                src={repository.owner.avatar_url}
+                                alt={repository.owner.login}
+                            />
+
+                            <div>
+                                <strong>{repository.full_name}</strong>
+                                <p>{repository.description}.</p>
+                            </div>
+                        </header>
+                    </RepositoryInfo>
+                )}
             </Header>
         </>
     )
@@ -45,4 +73,28 @@ const Header = styled.header`
             margin-right: 4px;
         }
     }
-`
+`;
+
+const RepositoryInfo = styled.div`
+    margin-top: 80px;
+    header {
+        display: flex;
+        align-items: center;
+        img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+        }
+        div {
+            margin-left: 24px;
+        strong {
+            color: #3d3d4d;
+            font-size: 36px;
+        }
+        p {
+            margin-top: 4px;
+            color: #737388;
+            font-size: 18px;
+        }
+    }
+`;
