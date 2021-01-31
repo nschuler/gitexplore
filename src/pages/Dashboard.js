@@ -24,7 +24,7 @@ const Dashboard = () => {
 
     useEffect(() => {
         localStorage.setItem(
-            '@GitHubExplorer:repositories',
+            '@gitexplore:repositories',
             JSON.stringify(repositories),
         );
     }, [repositories]);
