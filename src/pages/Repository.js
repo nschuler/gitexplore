@@ -32,40 +32,40 @@ const Repository = () => {
                     <FiChevronLeft size={16} />
                     Back
                 </Link>
-
-                {repository && (
-                    <RepositoryInfo>
-                        <header>
-                            <img
-                                src={repository.owner.avatar_url}
-                                alt={repository.owner.login}
-                            />
-
-                            <div>
-                                <strong>{repository.full_name}</strong>
-                                <p>{repository.description}.</p>
-                            </div>
-                        </header>
-
-                        <ul>
-                            <li>
-                                <strong>{repository.stargazers_count}</strong>
-                                <span>Stars</span>
-                            </li>
-
-                            <li>
-                                <strong>{repository.forks_count}</strong>
-                                <span>Forks</span>
-                            </li>
-
-                            <li>
-                                <strong>{repository.open_issues_count}</strong>
-                                <span>Open Issues</span>
-                            </li>
-                        </ul>
-                    </RepositoryInfo>
-                )}
             </Header>
+
+            {repository && (
+                <RepositoryInfo>
+                    <header>
+                        <img
+                            src={repository.owner.avatar_url}
+                            alt={repository.owner.login}
+                        />
+
+                        <div>
+                            <strong>{repository.full_name}</strong>
+                            <p>{repository.description}.</p>
+                        </div>
+                    </header>
+
+                    <ul>
+                        <li>
+                            <strong>{repository.stargazers_count}</strong>
+                            <span>Stars</span>
+                        </li>
+
+                        <li>
+                            <strong>{repository.forks_count}</strong>
+                            <span>Forks</span>
+                        </li>
+
+                        <li>
+                            <strong>{repository.open_issues_count}</strong>
+                            <span>Open Issues</span>
+                        </li>
+                    </ul>
+                </RepositoryInfo>
+            )}
         </>
     )
 }
