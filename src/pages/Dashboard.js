@@ -12,6 +12,22 @@ const Dashboard = () => {
     const [newRepository, setNewRepository] = useState('');
     const [inputError, setInputError] = useState('');
 
+    const [repositories, setRepositories] = useState(() => {
+        const storageRepositories = localStorage.getItem('@gitexplore:repositories');
+    
+        if (storageRepositories) {
+            return JSON.parse(storageRepositories);
+        }
+    
+        return [];
+    });
+
+    useEffect(() => {
+        localStorage.setItem(
+            '@GitHubExplorer:repositories',
+            JSON.stringify(repositories),
+        );
+    }, [repositories]);
 
     async function handleAddRepository(event) {
         event.preventDefault();
@@ -22,10 +38,14 @@ const Dashboard = () => {
         }
     
         try {
-          setNewRepository('');
-          setInputError('');
+            const response = await api.get(`repos/${newRepository}`);
+            const repository = response.data;
+          
+            setRepositories([...repositories, repository]);
+            setNewRepository('');
+            setInputError('');
         } catch (err) {
-          setInputError('Error searching for this repository');
+            setInputError('Error searching for this repository');
         }
     }
 
