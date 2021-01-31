@@ -42,6 +42,8 @@ const Dashboard = () => {
                 />
                 <button type="submit">Search</button>
             </Form>
+
+            {inputError && <Error>{inputError}</Error>}
         </>
     )
 }
@@ -90,4 +92,10 @@ const Form = styled.form`
       background: ${shade(0.3, '#04d361')};
     }
   }
+`;
+
+const Error = styled.span`
+  display: block;
+  margin-top: 8px;
+  color: #c53030;
 `;
